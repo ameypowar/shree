@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "EXIDE MATRIX", pdescription: "Product Code : MT40B20L/R", description: "Ah/VA : 35", price:"3831", imageUrl: "13.jpg" },
+        { name: "EXIDE MATRIX", pdescription: "Product Code : MTRED45L", description: "Ah/VA :45", price:"6982", imageUrl: "18.jpg"},
+        { name: "EXIDE MATRIX", pdescription: "Product Code : MTREDDIN100", description: "Ah/VA : 100", price:"15959", imageUrl: "17.jpg"},
+        { name: "EXIDE MILEAGE", pdescription: "Product Code : ML38B20L/R", description: "Ah/VA : 35", price:"3652", imageUrl: "25.png"},
+        { name: "EXIDE MILEAGE", pdescription: "Product Code : ML40LBH/RBH", description: "Ah/VA : 40", price:"4474", imageUrl: "14.jpg"},
+        { name: "EXIDE MILEAGE", pdescription: "Product Code : MLDIN44R/LH ", description: "Ah/VA : 44", price:"5399", imageUrl: "30.jpg"},
+        { name: "EXIDE EPIQ", pdescription: "Product Code : EPIQ35L/R", description: "Ah/VA : 35", price:"4232", imageUrl: "31.jpg"},
+        { name: "EXIDE EPIQ", pdescription: "Product Code : EPI40LBH", description: "Ah/VA : 35", price:"4754", imageUrl: "32.jpeg"},
+        { name: "EXIDE EEZY", pdescription: "Product Code : EY34B19L/R", description: "Ah/VA : 33", price:"3331", imageUrl: "34.jpeg"},
+        { name: "EXIDE EEZY", pdescription: "Product Code : EY700L/R", description: "Ah/VA : 65", price:"6720", imageUrl: "35.webp"},
+        { name: "EXIDE DRIVE", pdescription: "Product Code : DRVE35L", description: "Ah/VA : 35", price:"3355", imageUrl: "23.webp"},
+        { name: "EXIDE DRIVE", pdescription: "Product Code : DRIVE40LBH", description: "Ah/VA : 40", price:"3735", imageUrl: "36.jpg"},
+        { name: "EXIDE XPRESS", pdescription: "Product Code : XP800", description: "Ah/VA : 80", price:"6806", imageUrl: "38.jpeg"},
+        { name: "EXIDE XPRESS", pdescription: "Product Code : XP1000", description: "Ah/VA : 100", price:"8613", imageUrl: "16.jpg"},
+        { name: "EXIDE EKO", pdescription: "Product Code : ECO32", description: "Ah/VA :32", price:"3001", imageUrl: "24.jpeg"},
+        { name: "EXIDE EKO", pdescription: "Product Code : ECO40L", description: "Ah/VA : 40", price:"3542", imageUrl: "33.jpeg"},
+        { name: "EXIDE RIDE", pdescription: "Product Code : RIDE35L/R", description: "Ah/VA : 35", price:"2994", imageUrl: "40.jpeg"},
+        { name: "EXIDE RIDE", pdescription: "Product Code : RIDE700L/R", description: "Ah/VA : 65", price:"5129", imageUrl: "41.jpeg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT24", description: "Ah/VA : 3", price:"891", imageUrl: "11.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : 12XL2.5L-C", description: "Ah/VA : 2.5", price:"840", imageUrl: "11.jpg"},
+        { name: "EXIDE JAY KISAN", pdescription: "Product Code : KI75TRF", description: "Ah/VA : 75", price:"6665", imageUrl: "19.jpg"},
+        { name: "EXIDE JAY KISAN", pdescription: "Product Code : K75T", description: "Ah/VA : 75", price:"6665", imageUrl: "20.jpeg"},
+        { name: "EXIDE JAY KISAN", pdescription: "Product Code : KI99T", description: "Ah/VA : 99", price:"8014", imageUrl: "21.jpg"},
+        { name: "EXIDE JAY KISAN", pdescription: "Product Code : KI90H29L", description: "Ah/VA : 90", price:"6938", imageUrl: "22.jpg"},
+        { name: "EXIDE ERIDE PLUS", pdescription: "Product Code : ERFLPLUS100L", description: "Ah/VA : 100", price:"7303", imageUrl: "39.jpg"}
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.pdescription}</p>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>

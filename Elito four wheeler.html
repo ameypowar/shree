@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "ELITO-RR(36+36)", description: "Product Code : AET-RR-00042B20R", price:"4319", imageUrl: "e1.jpeg" },
+        { name: "ELITO-RR(36+36)", description: "Product Code : AET-RR-00042B20L", price:"4319", imageUrl: "e1.jpeg" },
+        { name: "ELITO-RR(30+30)", description: "Product Code : AET-RR-000DIN50R", price:"6497", imageUrl: "e2.jpeg" },
+        { name: "ELITO-RR(30+30)", description: "Product Code : AET-RR-000DIN50L", price:"6497", imageUrl: "e2.jpeg" },
+        { name: "ELITO-RR(30+30)", description: "Product Code : AET-RR-000DIN65L", price:"7660", imageUrl: "e2.jpeg" },
+        { name: "ELITO-RR(30+30)", description: "Product Code : AET-RR-090D23LBH", price:"7021", imageUrl: "e2.jpeg" },
+        { name: "ELITO-RB(24+24)", description: "Product Code : AET-RB-00095D31R", price:"8386", imageUrl: "e3.jpeg" },
+        { name: "ELITO-RB(24+24)", description: "Product Code : AET-RB-000955D31L", price:"8386", imageUrl: "e3.jpeg" },
+        { name: "ELITO-BB(18)", description: "Product Code : AET-BB-OET320RMF", price:"3477", imageUrl: "e4.jpeg" },
+        { name: "ELITO-BB(18)", description: "Product Code : AET-BB-OET320LMF", price:"3477", imageUrl: "e4.jpeg" },
+        { name: "ELITO-BB(24+0)", description: "Product Code : AET-BB-OET800RMF", price:"7414", imageUrl: "e5.jpeg" },
+        { name: "ELITO-BB(24+0)", description: "Product Code : AET-BB-OET800LMF", price:"7414", imageUrl: "e5.jpeg" },
+        { name: "ELITO-BB(24+0)", description: "Product Code : AET-BB-OET900RMF", price:"8105", imageUrl: "e5.jpeg" },
+        { name: "ELITO-BB(24+0)", description: "Product Code : AET-BB-OET900LMF", price:"8105", imageUrl: "e5.jpeg" },
+        { name: "ELITO-BB(24+0)", description: "Product Code : AET-BB-OET1300RMF", price:"12083", imageUrl: "e5.jpeg" }
+        
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    /* Style for product details */
+    .product-details {
+        margin-top: 10px;
+
+    }
+</style>
+</head>
+<body>
+
+<h2>Product Details</h2>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "Amaron OIL", description: "oil", price: "280", imageUrl: "oil.jpg" }
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>

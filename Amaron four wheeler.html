@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    /* Style for product details */
+    .product-details {
+        margin-top: 10px;
+
+    }
+</style>
+</head>
+<body>
+
+<h2>Product Details</h2>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "Amaron FLO", pdescription: "AAM-FL-00040B20L/R",description:"AH-35 WARRANTY-36F+36P " ,price: "4837", imageUrl: "amaronflo.jpg" },
+        { name: "Amaron FLO", pdescription: "AAM-FL-00042B20L/R",description:"AH-35 WARRANTY-36F+36P " ,price: "5154", imageUrl: "amaronflo.jpg" },
+        { name: "Amaron FLO", pdescription: "AAM-FL-0BH40B20L(BH40)",description:"AH-40 WARRANTY-36F+36P " ,price: "5390", imageUrl: "amaronflo.jpg" },
+        { name: "Amaron FLO", pdescription: "AAM-FL-0BH45D20L(BH45)",description:"AH-45 WARRANTY-30F+30P " ,price: "7218", imageUrl: "amaronflo.jpg" },
+        { name: "Amaron GO", pdescription: "AAM-GO-00034B20R/L",description:"AH-32 WARRANTY-24F+24P " ,price: "4326", imageUrl: "amarongo.png" },
+        { name: "Amaron GO", pdescription: "AAM-GO-00038B20L/R",description:"AH-35 WARRANTY-30F+30P " ,price: "4690", imageUrl: "amarongo.png" },
+        { name: "Amaron GO", pdescription: "AAM-GO-00050B24L",description:"AH-35 WARRANTY-24F+24P " ,price: "6793", imageUrl: "amarongo.png" },
+        { name: "Amaron GO", pdescription: "AAM-GO-0BH38B20R(BH38)",description:"AH-35 WARRANTY-30F+30P " ,price: "5039", imageUrl: "amarongo.png" },
+        { name: "Amaron HARVEST", pdescription: "AAM-HR-TR500D31L/R",description:"AH-75 WARRANTY-24F+18P " ,price: "7519", imageUrl: "Amaronharvest.WEBP" },
+        { name: "Amaron HARVEST", pdescription: "AAM-HR-NT600H29L/R",description:"AH-90 WARRANTY-24F+18P " ,price: "8111", imageUrl: "Amaronharvest.WEBP" },
+        { name: "Amaron HARVEST", pdescription: "AAM-HR-NT600E41L/R",description:"AH-90 WARRANTY-24F+18P " ,price: "8321", imageUrl: "Amaronharvest.WEBP" },
+        { name: "Amaron HI-WAY", pdescription: "AAM-HW-HC620D31R",description:"AH-80 WARRANTY-24F+18P " ,price: "7751", imageUrl: "Amaronhiway.jpg" },
+        { name: "Amaron HI-WAY", pdescription: "AAM-HW-NT650H29R",description:"AH-90 WARRANTY-24F+18P " ,price: "3191", imageUrl: "Amaronhiway.jpg" },
+        { name: "Amaron HI-WAY", pdescription: "AAM-HW-NT700E41",description:"AH-100 WARRANTY-24F+18P " ,price: "9880", imageUrl: "Amaronhiway.jpg" },
+        { name: "Amaron BLACK", pdescription: "AAM-BL-BL0300RMF",description:"AH-30 WARRANTY-24F " ,price: "3642", imageUrl: "amaronblack.jpg" },
+        { name: "Amaron BLACK", pdescription: "AAM-BL-0BL400LMF/R",description:"AH-35 WARRANTY-24F " ,price: "4305", imageUrl: "amaronblack.jpg" },
+        { name: "Amaron BLACK", pdescription: "AAM-BL-0BL600LMF/R",description:"AH-60 WARRANTY-24F " ,price: "6121", imageUrl: "amaronblack.jpg" },
+        { name: "Amaron FRESH", pdescription: "AAM-FR-0FR300RMF",description:"AH-30 WARRANTY-12F " ,price: "3264", imageUrl: "Amaronfresh.jpg" },
+        { name: "Amaron FRESH", pdescription: "AAM-FL-0FR400LMFR",description:"AH-35 WARRANTY-12F " ,price: "4003", imageUrl: "Amaronfresh.jpg" },
+        { name: "Amaron FRESH", pdescription: "AAM-FL-0FR650RMF/L",description:"AH-65 WARRANTY-12F " ,price: "5855", imageUrl: "Amaronfresh.jpg" },
+        { name: "Amaron TUBULAR", pdescription: "AAM-CR-AR130ST36",description:"AH-130 WARRANTY-24F+12P " ,price: "8836", imageUrl: "Amarontubler.jpg" },
+        { name: "Amaron TUBULAR", pdescription: "AAM-CR-AR145ST36",description:"AH-145 WARRANTY-24F+12P " ,price: "10999", imageUrl: "Amarontubler.jpg" },
+        { name: "Amaron TUBULAR", pdescription: "AAM-CR-AR165ST36",description:"AH-165 WARRANTY-24F+12P " ,price: "11803", imageUrl: "Amarontubler.jpg" },
+        { name: "Amaron TUBULAR", pdescription: "AAM-CR-DP150TT42",description:"AH-150 WARRANTY-30F+12P " ,price: "11974", imageUrl: "Amarontubler.jpg" }
+    
+    
+
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.pdescription}</p>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>

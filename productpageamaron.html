@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top:100px;
+}
+
+.product {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.product-name {
+    font-size: 20px;
+    margin: 20px 20px;
+    text-align: center;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.product-description {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div id="products-container" class="container"></div>
+
+    <script>// Example product data (replace it with your own)
+        var products = [
+            {
+                name: 'AMARON TWO WHEELER',
+                description: 'Batteries',
+                image: 'TwoWheeler_0.jpg',
+                link: 'Amaron two wheeler.html', // Link for the first product
+            },
+            {
+                name: 'AMARON FOUR WHEELER',
+                description: 'Batteries',
+                image: 'FOURW.jpg',
+                link: 'Amaron four wheeler.html', // Link for the second product
+            },
+            {
+                name: 'AMARON INVERTER',
+                description: 'Inverter',
+                image: 'inverter.jpg',
+                link: 'Amaron Inverter.html', // Link for the second product
+            },
+            {
+                name: 'AMARON Lubricant',
+                description: 'Lubricant',
+                image: 'oilback.png',
+                link: 'Amaron Lubricant.html', // Link for the second product
+            }
+        ];
+        
+        // Function to display products
+        function displayProducts() {
+            var productsContainer = document.getElementById('products-container');
+            
+            products.forEach(product => {
+                var productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+        
+                // Create an anchor element (<a>) for the product link
+                var productLink = document.createElement('a');
+                productLink.href = product.link; // Set the link URL
+                productLink.target = '_blank'; // Open link in a new tab
+        
+                var image = document.createElement('img');
+                image.src = product.image;
+                image.alt = product.name;
+        
+                // Append the image to the anchor element
+                productLink.appendChild(image);
+        
+                var productInfo = document.createElement('div');
+                productInfo.classList.add('product-info');
+        
+                var name = document.createElement('h2');
+                name.classList.add('product-name');
+                name.textContent = product.name;
+        
+                // Append the product name to the anchor element
+                productLink.appendChild(name);
+        
+                var description = document.createElement('p');
+                description.classList.add('product-description');
+                description.textContent = product.description;
+        
+                productInfo.appendChild(description);
+        
+                productDiv.appendChild(productLink); // Append the anchor element containing image and name
+                productDiv.appendChild(productInfo);
+        
+                productsContainer.appendChild(productDiv);
+            });
+        }
+        
+        // Call the function to display products when the page loads
+        window.onload = displayProducts;
+        </script>
+</body>
+</html>

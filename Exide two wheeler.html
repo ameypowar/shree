@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "EXIDE XPLORE", pdescription: "Product Code : 12XL2.5L-C", description: "Ah/VA : 2.5", price:"840", imageUrl: "8.jpg" },
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT24", description: "Ah/VA : 3", price:"891", imageUrl: "1.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT24A", description: "Ah/VA : 4", price:"933", imageUrl: "11.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT25", description: "Ah/VA : 4", price:"1148", imageUrl: "8.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT29", description: "Ah/VA : 8", price:"1820", imageUrl: "6.webp"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : 12XL5L-B", description: "Ah/VA : 5", price:"1195", imageUrl: "11.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLT27", description: "Ah/VA : 5", price:"1215", imageUrl: "8.jpg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : 12XL7B-B", description: "Ah/VA : 6", price:"1500", imageUrl: "9.jpeg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : XLTX14", description: "Ah/VA : 12", price:"2621", imageUrl: "10.jpeg"},
+        { name: "EXIDE XPLORE", pdescription: "Product Code : 12XL14LA2", description: "Ah/VA : 8", price:"1820", imageUrl: "11.jpg"}
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.pdescription}</p>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>

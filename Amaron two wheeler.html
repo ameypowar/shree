@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+<style>
+    /* Style for the product container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    /* Style for individual product card */
+    .product-card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    }
+    /* Style for product image */
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    /* Style for product details */
+    .product-details {
+        margin-top: 10px;
+
+    }
+</style>
+</head>
+<body>
+
+<h2>Product Details</h2>
+
+<div class="product-container" id="productContainer">
+    <!-- Product cards will be dynamically generated here using JavaScript -->
+</div>
+
+<script>
+    // Sample product data (can be fetched from server)
+    var products = [
+        { name: "AMARON PRO", pdescription: "AAM-PR-00050B20L/R", description:"AH-35 WARRANTY-36F+36P", price: "5677", imageUrl: "amaron pro.jpg" },
+        { name: "AMARON PRO", pdescription: "AAM-PR-0055B24LS",description:"AH-48  WARRANTY-36F+36P" ,price: "8526", imageUrl: "amaron pro.jpg" },
+        { name: "AMARON PRO", pdescription: "AAM-PR-574102069(DIN 74)",description:"AH-74 WARRANTY-36F+36P" ,price: "12528", imageUrl: "amaron pro.jpg" },
+        { name: "AMARON PRO", pdescription: "AAM-PR-600109087(DIN 100)",description:"AH-100 WARRANTY-36F+36P", price: "20766", imageUrl: "amaron pro.jpg" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTX25",description:"AH-2.5 WARRANTY-24F+24P", price: "1147", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTX50",description:"AH-5 WARRANTY-24F+24P", price: "1662", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTX7R",description:"AH-7 WARRANTY-24F+24P", price: "1703", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTX90",description:"AH-9 WARRANTY-24F+24P", price: "2449", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ4L",description:"AH-4 WARRANTY-24F+24P", price: "1325", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ5L",description:"AH-5 WARRANTY-24F+24P", price: "1548", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ7L",description:"AH-7 WARRANTY-24F+24P", price: "2022", imageUrl: "image1.png" },    
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ9R",description:"AH-9 WARRANTY-24F+24P", price: "2448", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ4L",description:"AH-4 WARRANTY-24F+24P", price: "1378", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "ABR-PR-12APBTZ5L",description:"AH-5 WARRANTY-24F+24P", price: "1599", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "AAM-PB-AP48KTZ4L",description:"AH-4 WARRANTY-24F+24P", price: "1325", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "AAM-BA-0A48ATZ6L",description:"AH-6 WARRANTY-24F+24P", price: "1572", imageUrl: "image1.png" },
+        { name: "AMARON PRO BIKE RIDER", pdescription: "AAM-BA-0A48ATZ14R",description:"AH-14 WARRANTY-24F+24P", price: "3453", imageUrl: "image1.png" }
+    
+
+    
+    ];
+
+    // Function to generate product cards
+    function generateProductCards() {
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing content
+
+        products.forEach(function(product) {
+            var card = document.createElement("div");
+            card.classList.add("product-card");
+
+            var image = document.createElement("img");
+            image.classList.add("product-image");
+            image.src = product.imageUrl;
+            image.alt = product.name;
+
+            var details = document.createElement("div");
+            details.classList.add("product-details");
+            details.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.pdescription}</p>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+            `;
+
+            card.appendChild(image);
+            card.appendChild(details);
+            container.appendChild(card);
+        });
+    }
+
+    // Call the function to generate product cards on page load
+    window.onload = generateProductCards;
+</script>
+
+</body>
+</html>
